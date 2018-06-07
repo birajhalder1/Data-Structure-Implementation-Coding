@@ -77,6 +77,29 @@ void inOrderWithoutRecursion(struct node* node){
 
 }
 
+void postOrderWithoutRecursion(struct node* node){
+    if(node == NULL)
+        return;
+    stack<struct node*> s1, s2;
+    s1.push(node);
+    while(!s1.empty())
+    {
+        node = s1.top();
+        s1.pop();
+        s2.push(node);
+        if(node->left!=NULL)
+            s1.push(node->left);
+        if(node->right!=NULL)
+            s1.push(node->right);
+    }
+    while(!s2.empty())
+    {
+        node = s2.top();
+        s2.pop();
+        cout<<node->data<<" ";
+    }
+}
+
 
 void reverseLevelOrderTraversal(struct node* node) //error
 {
@@ -111,9 +134,12 @@ int main()
 
     cout<<"Inorder Without Recursion"<<endl;
     inOrderWithoutRecursion(root);
-*/
+
     cout<<"Reverse Level order traversal"<<endl;
-    reverseLevelOrderTraversal(root);
+    reverseLevelOrderTraversal(root);*/
+
+    cout<<"POst order Without Recursion"<<endl;
+    postOrderWithoutRecursion(root);
 
 
 
