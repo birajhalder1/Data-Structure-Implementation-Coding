@@ -115,9 +115,7 @@ void preOrderWithoutRecursion(struct node* node){
             s.push(t->left);
     }
 }
-
-void reverseLevelOrderTraversal(struct node* node) //error
-{
+void reverseLevelOrderTraversal(struct node* node){
     if(node == NULL)    return ;
     struct node* t = NULL;
     queue<struct node*> q;
@@ -141,7 +139,33 @@ void reverseLevelOrderTraversal(struct node* node) //error
     }
 
 }
-
+void levelByLevelPrintTree(struct node* node){
+    if(node == NULL)    return ;
+    struct node* t = NULL;
+    queue<struct node* > q;
+    q.push(node);
+    q.push(NULL);
+    while(!q.empty())
+    {
+        node = q.front();
+        q.pop();
+        if(node!=NULL)
+        {
+            cout<<node->data<<" ";
+            if(node->left)
+                q.push(node->left);
+            if(node->right)
+                q.push(node->right);
+        }
+        else
+        {
+            if(!q.empty()){
+                cout<<endl;
+                q.push(NULL);
+            }
+        }
+    }
+}
 int main()
 {
     struct node* root = newNode(1);
@@ -177,11 +201,14 @@ int main()
     postOrderWithoutRecursion(root);
 
     cout<<"Pre order Without Recursion"<<endl;
-    preOrderWithoutRecursion(root);*/
+    preOrderWithoutRecursion(root);
 
 
     cout<<"Reverse Level order traversal"<<endl;
-    reverseLevelOrderTraversal(root);
+    reverseLevelOrderTraversal(root);*/
+
+    cout<<"Level By Level Tree"<<endl;
+    levelByLevelPrintTree(root);
 
     return 0;
 
