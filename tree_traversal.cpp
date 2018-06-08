@@ -166,6 +166,31 @@ void levelByLevelPrintTree(struct node* node){
         }
     }
 }
+void spiralOrderTraversal(struct node* node){
+    if(node == NULL)    return;
+    stack<struct node*> s1,s2;
+    s1.push(node);
+    while(!s1.empty() || !s2.empty())
+    {
+        while(!s1.empty())
+        {
+            struct node* curr = s1.top();
+            s1.pop();
+            cout<<curr->data<<" ";
+            if(curr->left != NULL)  s2.push(curr->left);
+            if(curr->right != NULL) s2.push(curr->right);
+        }
+        while(!s2.empty())
+        {
+            struct node* curr = s2.top();
+            s2.pop();
+            cout<<curr->data<<" ";
+            if(curr->right != NULL)  s1.push(curr->right);
+            if(curr->left != NULL) s1.push(curr->left);
+        }
+    }
+}
+
 int main()
 {
     struct node* root = newNode(1);
@@ -205,10 +230,13 @@ int main()
 
 
     cout<<"Reverse Level order traversal"<<endl;
-    reverseLevelOrderTraversal(root);*/
+    reverseLevelOrderTraversal(root);
 
     cout<<"Level By Level Tree"<<endl;
-    levelByLevelPrintTree(root);
+    levelByLevelPrintTree(root);*/
+
+    cout<<"Spiral Order Traversal"<<endl;
+    spiralOrderTraversal(root);
 
     return 0;
 

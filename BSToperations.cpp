@@ -68,7 +68,12 @@ void searchNodeInBst(struct node* node, int data)
         searchNodeInBst(node->left, data);
 }
 
-
+struct node* lca(struct node* node, int n1, int n2)
+{
+    if(node->data > max(n1,n2))   return lca(node->left,n1,n2);
+    else if(node->data < min(n1, n2))   return lca(node->right,n1,n2);
+    else    return node;
+}
 
 
 int main()
@@ -84,4 +89,6 @@ int main()
     printfpreorder(root);
     cout<<endl;
     searchNodeInBst(root,23);
+    root = lca(root,9,3);
+    cout<<root->data<<" ";
 }
